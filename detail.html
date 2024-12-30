@@ -33,18 +33,6 @@
                 height:90vh;
             }
         }
-        
-        .ARcard {
-            width: 100%;
-            height: 90%;
-            background-color: #fff;
-            shadow-intensity: 1;
-            autoplay: true;
-            auto-rotate: true;
-            camera-controls: true;
-            ar: true;
-            ar-modes: scene-viewer webxr quick-look;
-        }
     </style>
 </head>
 <body>
@@ -58,11 +46,20 @@
     <div class="flex">
         <div class="text1 model">
             <br><span id="name"></span><br>
-            <model-viewer id="viewer" class="ARcard"
+            <model-viewer id="viewer"
+                ar
+                ar-modes="scene-viewer webxr quick-look"
                 src=""
                 ios-src=""
                 alt=""
-            ></model-viewer>
+                style="width:100%;height:90%;"                  
+                background-color="#70BCD1"
+                shadow-intensity="1"
+                autoplay
+                auto-rotate
+                camera-controls
+          ></model-viewer>
+                
         </div>
         <br>
     </div>
