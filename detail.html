@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>詳細ページ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="name"></h1>
+  <img id="image" alt="">
+
+  <script>
+    // URLのクエリパラメータを取得
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name');
+    const imgpath = params.get('imgpath');
+
+    // ページにデータを表示
+    document.getElementById('name').textContent = name;
+    document.getElementById('image').src = imgpath;
+    document.getElementById('image').alt = name;
+  </script>
+</body>
+</html>

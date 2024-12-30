@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>目次</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.4;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      font-size: 24px;
+      text-align: center;
+      color: #333333;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 20px;
+      color: #555555;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    ul li {
+      margin: 6px 0;
+      font-size: 18px;
+    }
+    ul li::before {
+      content: "・";
+      margin-right: 8px;
+      color: #333333;
+    }
+    ul li a {
+      text-decoration: none;
+      color: #007BFF;
+      transition: color 0.3s, text-decoration 0.3s;
+      cursor: pointer;
+    }
+    ul li a:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>目次</h1>
+    <div id="table-of-contents"></div>
+  </div>
+
+  <script>
+    // JSONデータ
+    const data = {
+      "2023": { "name1": { "imgpath": "path/to/image1.jpg" } },
+      "2024": { "name2": { "imgpath": "path/to/image2.jpg" }, "name3": { "imgpath": "path/to/image3.jpg" } },
+      "2025": { "name4": { "imgpath": "path/to/image4.jpg" } }
+    };
+
+    // 目次を生成する関数
+    function generateTableOfContents(jsonData) {
+      const container = document.getElementById("table-of-contents");
+
+      for (const year in jsonData) {
+        // 見出しを生成
+        const heading = document.createElement("h2");
+        heading.textContent = year;
+        container.appendChild(heading);
+
+        // リストを生成
+        const list = document.createElement("ul");
+        for (const name in jsonData[year]) {
+          const listItem = document.createElement("li");
+
+          const link = document.createElement("a");
+          link.textContent = name;
+
+          // リンクにパラメータを設定
+          const imgpath = jsonData[year][name].imgpath;
+          link.href = `detail.html?name=${encodeURIComponent(name)}&imgpath=${encodeURIComponent(imgpath)}`;
+
+          listItem.appendChild(link);
+          list.appendChild(listItem);
+        }
+
+        container.appendChild(list);
+      }
+    }
+
+    // JSONデータから目次を生成
+    generateTableOfContents(data);
+  </script>
+</body>
+</html>
