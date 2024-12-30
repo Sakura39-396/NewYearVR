@@ -3,106 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>目次</title>
+  <title>最後のデータ表示</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      line-height: 1.4;
-      margin: 20px;
+      text-align: center;
+      margin: 50px;
       background-color: #f9f9f9;
-    }
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      background: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     h1 {
       font-size: 24px;
-      text-align: center;
-      color: #333333;
       margin-bottom: 20px;
     }
-    h2 {
-      font-size: 20px;
-      color: #555555;
-      margin-top: 20px;
-      margin-bottom: 10px;
+    .item {
+      margin-bottom: 30px;
     }
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-    ul li {
-      margin: 6px 0;
-      font-size: 18px;
-    }
-    ul li::before {
-      content: "・";
-      margin-right: 8px;
-      color: #333333;
-    }
-    ul li a {
-      text-decoration: none;
-      color: #007BFF;
-      transition: color 0.3s, text-decoration 0.3s;
-      cursor: pointer;
-    }
-    ul li a:hover {
-      color: #0056b3;
-      text-decoration: underline;
+    .item img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>目次</h1>
-    <div id="table-of-contents"></div>
-  </div>
+  <h1>最後のデータ表示</h1>
+  <div id="content"></div>
 
   <script>
-    // JSONデータ
-    const data = {
-      "2023": { "name1": { "imgpath": "path/to/image1.jpg" } },
-      "2024": { "name2": { "imgpath": "path/to/image2.jpg" }, "name3": { "imgpath": "path/to/image3.jpg" } },
-      "2025": { "name4": { "imgpath": "path/to/image4.jpg" } }
-    };
-
-    // 目次を生成する関数
-    function generateTableOfContents(jsonData) {
-      const container = document.getElementById("table-of-contents");
-
-      for (const year in jsonData) {
-        // 見出しを生成
-        const heading = document.createElement("h2");
-        heading.textContent = year;
-        container.appendChild(heading);
-
-        // リストを生成
-        const list = document.createElement("ul");
-        for (const name in jsonData[year]) {
-          const listItem = document.createElement("li");
-
-          const link = document.createElement("a");
-          link.textContent = name;
-
-          // リンクにパラメータを設定
-          const imgpath = jsonData[year][name].imgpath;
-          link.href = `detail.html?name=${encodeURIComponent(name)}&imgpath=${encodeURIComponent(imgpath)}`;
-
-          listItem.appendChild(link);
-          list.appendChild(listItem);
+    // 外部JSONファイルを読み込む
+    fetch('data.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('JSONデータの取得に失敗しました');
         }
+        return response.json();
+      })
+      .then(data => {
+        // 最後のキーを取得
+        const lastKey = Object.keys(data).pop();
+        const lastData = data[lastKey];
 
-        container.appendChild(list);
-      }
-    }
+        // コンテンツを生成
+        const contentDiv = document.getElementById("content");
 
-    // JSONデータから目次を生成
-    generateTableOfContents(data);
+        for (const name in lastData) {
+          const imgPath = lastData[name].imgpath;
+
+          // アイテムのコンテナを作成
+          const itemDiv = document.createElement("div");
+          itemDiv.className = "item";
+
+          // 名前を表示
+          const nameElement = document.createElement("h2");
+          nameElement.textContent = name;
+          itemDiv.appendChild(nameElement);
+
+          // 画像を表示
+          const imgElement = document.createElement("img");
+          imgElement.src = imgPath;
+          imgElement.alt = name;
+          itemDiv.appendChild(imgElement);
+
+          // コンテンツに追加
+          contentDiv.appendChild(itemDiv);
+        }
+      })
+      .catch(error => {
+        console.error('エラー:', error);
+        const contentDiv = document.getElementById("content");
+        contentDiv.textContent = 'データの読み込みに失敗しました。エラー内容: ' + error.message;
+      });
   </script>
 </body>
 </html>

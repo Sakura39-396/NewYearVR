@@ -1,0 +1,15 @@
+{
+  "2023": {
+    "Example Item 1": {
+      "imgpath": "path/to/image1.jpg"
+    },
+    "Example Item 2": {
+      "imgpath": "path/to/image2.jpg"
+    }
+  },
+  "2024": {
+    "Example Item 3": {
+      "imgpath": "path/to/image3.jpg"
+    }
+  }
+}
