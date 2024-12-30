@@ -60,6 +60,7 @@
 <body>
   <div class="container">
     <h1>目次</h1>
+    <a href="./index.html" >今年の作品まとめページ</a><br>
     <div id="table-of-contents"></div>
   </div>
 
@@ -101,8 +102,9 @@
           link.textContent = name;
 
           // リンクにパラメータを設定
-          const imgpath = jsonData[year][name].imgpath;
-          link.href = `detail.html?name=${encodeURIComponent(name)}&imgpath=${encodeURIComponent(imgpath)}`;
+          const path = jsonData[year][name].path;
+          const iosPath = jsonData[year][name].iosPath;
+          link.href = `detail.html?name=${encodeURIComponent(name)}&path=${encodeURIComponent(path)}&iosPath=${encodeURIComponent(iosPath)}`;
 
           listItem.appendChild(link);
           list.appendChild(listItem);

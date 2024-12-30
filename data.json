@@ -1,15 +1,7 @@
 {
-  "2023": {
-    "Example Item 1": {
-      "imgpath": "path/to/image1.jpg"
-    },
-    "Example Item 2": {
-      "imgpath": "path/to/image2.jpg"
-    }
-  },
-  "2024": {
-    "Example Item 3": {
-      "imgpath": "path/to/image3.jpg"
-    }
-  }
+  "2023": { 
+    "うさぎ(S作)": { "path": "./model/v7.glb","iosPath": "./model/V7.usdz" } },
+  "2024": { 
+    "龍(S作)": { "path": "./model/ryuu.glb","iosPath": "./ryuu.usdz" }, 
+    "ドラゴン(A作)": { "path": "./model/ryuu_ai.glb","iosPath": "./model/ryuu_ai.glb" } }
 }
