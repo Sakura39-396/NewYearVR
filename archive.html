@@ -104,7 +104,8 @@
           // リンクにパラメータを設定
           const path = jsonData[year][name].path;
           const iosPath = jsonData[year][name].iosPath;
-          link.href = `detail.html?name=${encodeURIComponent(name)}&path=${encodeURIComponent(path)}&iosPath=${encodeURIComponent(iosPath)}`;
+          const iosSrc = paths.iosPath ? `&iosPath=${encodeURIComponent(iosPath)}` : "";
+          link.href = `detail.html?name=${encodeURIComponent(name)}&path=${encodeURIComponent(path)}`;
 
           listItem.appendChild(link);
           list.appendChild(listItem);
