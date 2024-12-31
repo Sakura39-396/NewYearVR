@@ -105,15 +105,15 @@
           const path = jsonData[year][name].path;
           const iosPath = jsonData[year][name].iosPath;
           const iosSrc = paths.iosPath ? `&iosPath=${encodeURIComponent(iosPath)}` : "";
-          link.href = `detail.html?name=${encodeURIComponent(name)}&path=${encodeURIComponent(path)}`;
+          link.href = `detail.html?name=${encodeURIComponent(name)}&path=${encodeURIComponent(path)}${iosSrc}`;
 
           listItem.appendChild(link);
           list.appendChild(listItem);
         }
 
         container.appendChild(list);
-      }
-    }
+      }4
+    }4
   </script>
 </body>
 </html>
