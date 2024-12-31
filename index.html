@@ -79,13 +79,16 @@
         for (const [name, paths] of Object.entries(latestData)) {
           const modelDiv = document.createElement("div");
           modelDiv.className = "text1 model";
+          // `ios-src` を条件付きで追加
+          const iosSrc = paths.iosPath ? `ios-src="${paths.iosPath}"` : "";
+
           modelDiv.innerHTML = `
             <br><span>${name}</span><br>
             <model-viewer
               ar
               ar-modes="scene-viewer webxr quick-look"
               src="${paths.path}"
-              ios-src="${paths.iosPath}"
+              ${iosSrc}
               alt="${name}"
               style="width:100%;height:90%;"                  
               background-color="#70BCD1"
